@@ -1,0 +1,33 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.20;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+contract AshrahToken is ERC20 {
+    address public owner;
+    uint256 private _totalSupply;
+
+    constructor() ERC20("Ashrah", "ASH") 
+    {
+        owner = msg.sender;
+        _mint(msg.sender, 1000000 * 10 ** decimals());
+        _totalSupply = 1000000 * 10 ** decimals();
+    } 
+
+    function mint (address _to, uint256 _amount) 
+    public returns (bool success) 
+    {
+        require(msg.sender == owner, "No other than Ashrah can mint tokens");
+        _mint(_to, _amount);
+        _totalSupply += _amount;
+        return true;
+    }
+
+    function transfer(address _to, uint256 _value) 
+    public override returns (bool success) 
+    {
+        _transfer(msg.sender, _to, _value);
+        return true;
+    }
+}
+
