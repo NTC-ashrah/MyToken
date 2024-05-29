@@ -3,11 +3,11 @@ pragma solidity 0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract AshrahToken is ERC20 {
+contract TrickboyToken is ERC20 {
     address public owner;
     uint256 private _totalSupply;
 
-    constructor() ERC20("Ashrah", "ASH") 
+    constructor() ERC20("Trickboy", "TBT") 
     {
         owner = msg.sender;
         _mint(msg.sender, 1000000 * 10 ** decimals());
