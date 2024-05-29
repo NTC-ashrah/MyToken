@@ -17,7 +17,7 @@ contract TrickboyToken is ERC20 {
     function mint (address _to, uint256 _amount) 
     public returns (bool success) 
     {
-        require(msg.sender == owner, "No other than Ashrah can mint tokens");
+        require(msg.sender == owner, "No other than Trickboy can mint tokens");
         _mint(_to, _amount);
         _totalSupply += _amount;
         return true;
