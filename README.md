@@ -1,105 +1,27 @@
-TrickboyToken
-TrickboyToken is a simple ERC20 token implementation using OpenZeppelin's ERC20 contract. This token is called "Trickboy" with a symbol "TBT".
+# Ashrah Token (TRICK)
 
-Features
-ERC20 Compliance: TrickboyToken adheres to the ERC20 standard, ensuring compatibility with a wide range of wallets, exchanges, and other tools.
-Ownership: The contract defines an owner who has exclusive rights to mint new tokens.
-Minting: The owner can mint new tokens to any address.
-Transfers: Users can transfer tokens to other addresses.
-Getting Started
-Prerequisites
-Solidity 0.8.20
-OpenZeppelin Contracts
-Installing
-Clone the repository:
+This is a simple ERC20 token contract named Ashrah (symbol: TRK) implemented in Solidity version 0.8.20. The contract allows minting, burning, and transferring tokens.
 
-sh
-Copy code
-git clone https://github.com/your-repository/trickboytoken.git
-cd trickboytoken
-Install dependencies:
-Ensure you have the necessary dependencies installed:
+## Usage
 
-sh
-Copy code
-npm install @openzeppelin/contracts
-Compile the contract:
-Use your preferred Solidity development environment to compile the contract. For example, with Truffle:
+1. **Minting Tokens**: 
+   - To mint new tokens, call the `mint` function with the desired token amount.
+   
+2. **Burning Tokens**: 
+   - To burn tokens, call the `burn` function with the desired token amount.
+   
+3. **Transferring Tokens**: 
+   - To transfer tokens, call the `transfer` function with the recipient's address and the token amount.
 
-sh
-Copy code
-truffle compile
-Deployment
-Deploy the contract to your desired Ethereum network:
+## Deployment
 
-Migration Script:
-Create a migration script (e.g., 2_deploy_contracts.js) to deploy the contract:
+You can deploy this contract to any Ethereum-compatible blockchain network. Make sure to set the appropriate gas price and network settings when deploying.
 
-js
-Copy code
-const TrickboyToken = artifacts.require("TrickboyToken");
+## License
 
-module.exports = function(deployer) {
-  deployer.deploy(TrickboyToken);
-};
-Deploy:
-Run the deployment:
+This contract is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-sh
-Copy code
-truffle migrate --network <network>
-Usage
-Contract Address
-After deployment, note the contract address for interacting with the token.
+## Dependencies
 
-Interacting with the Token
-You can interact with the token using various Ethereum tools and libraries (e.g., Web3.js, Ethers.js). Below are some basic operations:
+This contract relies on OpenZeppelin's ERC20 implementation. You can find the source code for OpenZeppelin's ERC20 contract [here](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol).
 
-Minting Tokens
-Only the owner can mint new tokens:
-
-js
-Copy code
-const trickboyToken = await TrickboyToken.deployed();
-await trickboyToken.mint(recipientAddress, amount, { from: ownerAddress });
-Transferring Tokens
-Any user can transfer tokens to another address:
-
-js
-Copy code
-await trickboyToken.transfer(toAddress, amount, { from: fromAddress });
-Contract Details
-State Variables
-owner: The address of the contract owner.
-_totalSupply: The total supply of the token.
-Constructor
-solidity
-Copy code
-constructor() ERC20("Trickboy", "TBT") {
-    owner = msg.sender;
-    _mint(msg.sender, 1000000 * 10 ** decimals());
-    _totalSupply = 1000000 * 10 ** decimals();
-}
-The constructor initializes the token with the name "Trickboy" and symbol "TBT". It also sets the deployer as the owner and mints an initial supply of 1,000,000 TBT to the owner.
-
-Functions
-mint(address _to, uint256 _amount): Allows the owner to mint new tokens.
-
-solidity
-Copy code
-function mint(address _to, uint256 _amount) public returns (bool success) {
-    require(msg.sender == owner, "No other than Trickboy can mint tokens");
-    _mint(_to, _amount);
-    _totalSupply += _amount;
-    return true;
-}
-transfer(address _to, uint256 _value): Transfers tokens to another address.
-
-solidity
-Copy code
-function transfer(address _to, uint256 _value) public override returns (bool success) {
-    _transfer(msg.sender, _to, _value);
-    return true;
-}
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
