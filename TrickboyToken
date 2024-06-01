@@ -1,33 +1,20 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.20;
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol";
 
-contract TrickboyToken is ERC20 {
-    address public owner;
-    uint256 private _totalSupply;
+contract Ashrah is ERC20("TRICK", "TRK") {
 
-    constructor() ERC20("Trickboy", "TBT") 
-    {
-        owner = msg.sender;
-        _mint(msg.sender, 1000000 * 10 ** decimals());
-        _totalSupply = 1000000 * 10 ** decimals();
-    } 
+	function mint(uint256 token) public {
+		_mint(msg.sender, token);
+	}
 
-    function mint (address _to, uint256 _amount) 
-    public returns (bool success) 
-    {
-        require(msg.sender == owner, "No other than Trickboy can mint tokens");
-        _mint(_to, _amount);
-        _totalSupply += _amount;
-        return true;
-    }
+	function burn(uint256 token)public {
+		_burn(msg.sender, token);
+	}
 
-    function transfer(address _to, uint256 _value) 
-    public override returns (bool success) 
-    {
-        _transfer(msg.sender, _to, _value);
-        return true;
-    }
+	function transfer(address to,uint256 token) public override returns (bool) {
+		_transfer(msg.sender, to, token);
+		return true;
+	}
 }
-
